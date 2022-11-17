@@ -24,6 +24,22 @@ public class Entreprise {
         listeEmploye.put(Profession.MACONQUALIFIE, new ArrayList<>());
     }
 
+    public void afficherEntreprise(){
+        for (ArrayList<Personne> arLisPersonnes : listeEmploye.values()) {
+            for (Personne personne : arLisPersonnes) {
+                System.out.println(personne.toString());
+            }
+            }
+    }
+
+    public int nombreEmpEntreprise(){
+        int nbEmpEnt = 0;
+        for (ArrayList<Personne> arLisPersonnes : listeEmploye.values()) {
+            for (Personne personne : arLisPersonnes) {
+                nbEmpEnt = nbEmpEnt +1;
+            }
+        }return nbEmpEnt;
+    }
 
     public void ajouterEmploye(Personne personne) throws EntrepriseException {
         if (peuxAjouterPersonne(personne)) {
@@ -52,23 +68,26 @@ public class Entreprise {
         return false;
     }
 
-    public void supprimerPersonne(Personne personne) throws EntrepriseException {
-       Personne pers = cherchePersonne(personne);
-        if (!employeDejaPresent(personne)) {
-            throw new EntrepriseException(String.format("La perseronne avec l'%s n'existe pas", personne.getId()));
-        } else {pers.
-
-            }
-
-        }
-public  Personne cherchePersonne(Personne personne) {
-    for (ArrayList<Personne> arLisPersonnes : listeEmploye.values()) {
-        for (Personne employe : arLisPersonnes) {
-            if (employe.getId() == personne.getId()) return personne;
+    public void supprimerPersonne(int id){
+        try {
+            Personne pers = cherchePersonne(id);
+            listeEmploye.get(pers.getProfession()).remove(pers);
+        }catch(EntrepriseException entExMsg){
+            System.out.println(entExMsg.getMessage());
         }
     }
-    return null;
-}
+
+        public Personne cherchePersonne ( int id) throws EntrepriseException {
+            for (ArrayList<Personne> arLisPersonnes : listeEmploye.values()) {
+                for (Personne personne : arLisPersonnes) {
+                    if (personne.getId() == id) {
+                        return personne;
+                    }
+
+                }
+            }
+            throw new EntrepriseException(String.format("La perseronne avec l'%s n'existe pas", id));
+        }
 
     public HashMap<Profession, ArrayList<Personne>> getListeEmploye() {
         return listeEmploye;
