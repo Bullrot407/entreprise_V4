@@ -120,7 +120,7 @@ class EnterpriseControllerTest {
 
     @Test
     @Order(7)
-    void testDoulonEmploye() {
+    void testDoublonEmploye() {
         try {
             pers = factory.getPersonne("Bureau", "Claudia", Profession.SECRETAIRE, 100);
             entreprise.ajouterEmploye(pers);
