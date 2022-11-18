@@ -10,6 +10,7 @@ import java.util.Arrays;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 class EnterpriseControllerTest {
@@ -44,7 +45,7 @@ class EnterpriseControllerTest {
         //ajout macon (3)
         pers = factory.getPersonne("Ciment", "Linda", Profession.MACON, 400);
         entreprise.ajouterEmploye(pers);
-        pers = factory.getPersonne("truelle", "Romuald", Profession.MACON, 401);
+        pers = factory.getPersonne("Truelle", "Romuald", Profession.MACON, 401);
         entreprise.ajouterEmploye(pers);
         pers = factory.getPersonne("Placard", "Christopher", Profession.MACON, 402);
         entreprise.ajouterEmploye(pers);
@@ -101,10 +102,8 @@ class EnterpriseControllerTest {
             pers = factory.getPersonne("Ruelle", "Max", Profession.SECRETAIRE, 102);
             entreprise.ajouterEmploye(pers);
         } catch (EntrepriseException exMsgEnt) {
-            System.out.println("Trop d'employé");
+            assertEquals("Une erreur inatendue est survenue avec la profession: SECRETAIRE", exMsgEnt.getMessage());
         }
-        //assertThrows(EntrepriseException.class, () -> {entreprise.ajouterEmploye(pers); },"pas bien");
-
     }
 
     @Test
@@ -117,6 +116,16 @@ class EnterpriseControllerTest {
         assertEquals(13, entreprise.nombreEmpEntreprise());
         System.out.println("\naffichage apres suppression");
         entreprise.afficherEntreprise();
+    }
 
+    @Test
+    @Order(7)
+    void testDoulonEmploye() {
+        try {
+            pers = factory.getPersonne("Bureau", "Claudia", Profession.SECRETAIRE, 100);
+            entreprise.ajouterEmploye(pers);
+        } catch (EntrepriseException exMsgEnt) {
+            assertEquals("L'employé avec l'id 100 existe deja", exMsgEnt.getMessage());
+        }
     }
 }
