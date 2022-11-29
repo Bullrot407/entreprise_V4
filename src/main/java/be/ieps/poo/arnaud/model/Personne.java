@@ -1,6 +1,8 @@
 package be.ieps.poo.arnaud.model;
 
-public abstract class Personne implements IPersonne {
+import java.io.Serializable;
+
+public abstract class Personne implements IPersonne , Serializable {
 
     private String nom;
     private String prenom;
@@ -9,17 +11,17 @@ public abstract class Personne implements IPersonne {
 
     @Override
     public String toString() {
-        return "PROFESSION: " + profession +
-                " / NOM: " + nom +
-                " / PRENOM: " + prenom  +
-                " / ID: " + id +
+        return "PROFESSION: " + getProfession() +
+                " / NOM: " + getNom() +
+                " / PRENOM: " + getPrenom()  +
+                " / ID: " + getId() +
                 " / TRAVAIL: " + travail() +
                 " / LOISIR: " + loisir();
 
     }
 
 //Constructeur
-    public Personne(String nom, String prenom, Profession profession,int id) {
+    public Personne(String nom, String prenom, Profession profession, int id) {
         this.nom = nom;
         this.prenom = prenom;
         this.profession = profession;

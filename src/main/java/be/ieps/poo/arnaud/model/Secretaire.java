@@ -3,7 +3,7 @@ package be.ieps.poo.arnaud.model;
     public class Secretaire extends Personne {
 
         public Secretaire(String nom, String prenom,int id) {
-            super(nom, prenom, Profession.SECRETAIRE,id);
+            super(nom, prenom, Profession.SECRETAIRE, id);
         }
 
 

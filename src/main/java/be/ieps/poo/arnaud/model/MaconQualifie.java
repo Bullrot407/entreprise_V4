@@ -3,7 +3,7 @@ package be.ieps.poo.arnaud.model;
     public class MaconQualifie extends Personne {
 
         public MaconQualifie(String nom, String prenom,int id) {
-            super(nom, prenom, Profession.MACONQUALIFIE,id);
+            super(nom, prenom, Profession.MACONQUALIFIE, id);
         }
 
         public MaconQualifie() {

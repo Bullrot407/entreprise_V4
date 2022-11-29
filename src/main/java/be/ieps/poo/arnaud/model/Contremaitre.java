@@ -4,7 +4,7 @@ public class Contremaitre extends Personne {
 
     public Contremaitre(String nom, String prenom,int id) {
 
-            super(nom, prenom, Profession.CONTREMAITRE,id);
+            super(nom, prenom, Profession.CONTREMAITRE, id);
         }
 
 

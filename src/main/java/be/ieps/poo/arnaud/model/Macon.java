@@ -3,7 +3,7 @@ package be.ieps.poo.arnaud.model;
     public class Macon extends Personne {
 
         public Macon(String nom, String prenom,int id) {
-            super(nom, prenom, Profession.MACON,id);
+            super(nom, prenom, Profession.MACON, id);
         }
 
 

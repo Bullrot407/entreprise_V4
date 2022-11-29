@@ -3,38 +3,36 @@ package be.ieps.poo.arnaud.model;
 
     public  class Directeur extends Personne {
 
-        public float porteFeuille;
-
+private Float portefeuille;
         public Directeur(String nom, String prenom, float porteFeuille,int id) {
-            super(nom, prenom,Profession.DIRECTEUR,id);
-
-            this.porteFeuille = porteFeuille;
+            super(nom, prenom,Profession.DIRECTEUR, id);
+            this.portefeuille = porteFeuille;
         }
 
         public Directeur(String nom, String prenom,int id) {
-            super(nom, prenom,Profession.DIRECTEUR,id);
+            super(nom, prenom,Profession.DIRECTEUR, id);
         }
 
 
         @Override
         public String toString() {
             return "PROFESSION: " + getProfession()  +
+
                     " / NOM: " + getNom()  +
                     " / PRENOM:  " + getPrenom() +
-                    " / PORTEFEUILLE: " + porteFeuille +
+                    " / ID: " + getId() +
+                    " / PORTEFEUILLE: " + getPortefeuille() +
                     " / TRAVAIL: " + travail() +
                     " / LOISIR: " + loisir();
         }
 
-        public float getPorteFeuille() {
-            return porteFeuille;
+        public Float getPortefeuille() {
+            return portefeuille;
         }
 
-        public void setPorteFeuille(float porteFeuille) {
-            this.porteFeuille = porteFeuille;
+        public void setPortefeuille(Float portefeuille) {
+            this.portefeuille = portefeuille;
         }
-
-
 
         @Override
         public String travail() {

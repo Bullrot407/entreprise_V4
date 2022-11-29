@@ -3,7 +3,7 @@ package be.ieps.poo.arnaud.model;
     public class Manoeuvre extends Personne {
 
         public Manoeuvre(String nom, String prenom,int id ){
-            super(nom, prenom, Profession.MANOEUVRE,id);
+            super(nom, prenom, Profession.MANOEUVRE, id);
         }
 
         @Override

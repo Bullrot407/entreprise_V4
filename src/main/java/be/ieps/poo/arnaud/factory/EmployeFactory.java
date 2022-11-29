@@ -20,7 +20,7 @@ public class EmployeFactory {
 
     public Personne getPersonne(String nom, String prenom, Profession profession, float porteFeuille, int id) throws EntrepriseException {
         return switch (profession) {
-            case DIRECTEUR -> new Directeur(nom, prenom, 0f, id);
+            case DIRECTEUR -> new Directeur(nom, prenom, porteFeuille, id);
             default -> throw new EntrepriseException("La profession ne peut pas etre NULL");
         };
     }
