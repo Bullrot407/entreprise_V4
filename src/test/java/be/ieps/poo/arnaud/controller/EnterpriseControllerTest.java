@@ -4,7 +4,9 @@ import be.ieps.poo.arnaud.exceptions.EntrepriseException;
 import be.ieps.poo.arnaud.factory.EmployeFactory;
 import be.ieps.poo.arnaud.model.*;
 import be.ieps.poo.arnaud.serialisation.Serialisation;
+import net.bytebuddy.pool.TypePool;
 import org.junit.jupiter.api.*;
+import org.junit.jupiter.params.provider.EmptySource;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -73,18 +75,18 @@ class EnterpriseControllerTest {
     @Order(2)
     void supprimeDonnee() {
         entrepriseController.supprimerListeEmploye();
-        System.out.println("affichage apres suppression1");
+        System.out.println("affichage apres suppression");
         entrepriseController.afficherEntreprise();
-
-
+        assertEquals(0,entrepriseController.getListeEmploye().size());
     }
 
     @Test
     @Order(3)
     void ajoutDepuisFichier() {
         entrepriseController.setListeEmploye(serialisation.lectureFichierPersonne());
-        System.out.println("apres ajout de fichier2");
+        System.out.println("apres ajout de fichier");
         entrepriseController.afficherEntreprise();
+        assertEquals(14,entrepriseController.nombreEmpEntreprise());
     }
 
     @Test
@@ -135,7 +137,7 @@ class EnterpriseControllerTest {
     @Test
     @Order(8)
     void testSuppDEmployee() {
-        System.out.println("affichage avant suppression de l'employé 101\n");
+        System.out.println("\naffichage avant suppression de l'employé 101\n");
         entrepriseController.afficherEntreprise();
         assertEquals(14, entrepriseController.nombreEmpEntreprise());
         entrepriseController.supprimerPersonne(101);
