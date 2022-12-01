@@ -1,6 +1,7 @@
 package be.ieps.poo.arnaud.logging;
 
 import be.ieps.poo.arnaud.App;
+import be.ieps.poo.arnaud.exceptions.EntrepriseException;
 
 import java.io.FileInputStream;
 import java.io.IOException;
@@ -27,7 +28,7 @@ public class LoggingManager {
 
     static {
         try {
-            logManager.readConfiguration(new FileInputStream("jul.properties"));
+            logManager.readConfiguration(new FileInputStream("configurationLog.properties"));
         } catch (IOException exception) {
             LOGGER.log(Level.SEVERE, "Cannot read configuration file", exception);
         }

@@ -75,7 +75,9 @@ class EnterpriseControllerTest {
     @Order(2)
     void supprimeDonnee() {
         entrepriseController.supprimerListeEmploye();
-        System.out.println("affichage apres suppression");
+        System.out.println("******************************************************\n");
+        System.out.println("affichage apres suppression de la liste depuis fichier");
+        System.out.println("\n******************************************************");
         entrepriseController.afficherEntreprise();
         assertEquals(0,entrepriseController.getListeEmploye().size());
     }
@@ -84,7 +86,9 @@ class EnterpriseControllerTest {
     @Order(3)
     void ajoutDepuisFichier() {
         entrepriseController.setListeEmploye(serialisation.lectureFichierPersonne());
-        System.out.println("apres ajout de fichier");
+        System.out.println("******************************************************\n");
+        System.out.println("affichage apres ajout de fichier de la liste depuis fichier");
+        System.out.println("\n******************************************************");
         entrepriseController.afficherEntreprise();
         assertEquals(14,entrepriseController.nombreEmpEntreprise());
     }
@@ -136,14 +140,10 @@ class EnterpriseControllerTest {
 
     @Test
     @Order(8)
-    void testSuppDEmployee() {
-        System.out.println("\naffichage avant suppression de l'employé 101\n");
-        entrepriseController.afficherEntreprise();
+    void testSuppDEmployee() throws EntrepriseException {
         assertEquals(14, entrepriseController.nombreEmpEntreprise());
         entrepriseController.supprimerPersonne(101);
         assertEquals(13, entrepriseController.nombreEmpEntreprise());
-        System.out.println("\naffichage apres suppression de l'employé 101");
-        entrepriseController.afficherEntreprise();
     }
 
     @Test

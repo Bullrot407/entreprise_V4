@@ -1,12 +1,15 @@
 package be.ieps.poo.arnaud.controller;
 
 import be.ieps.poo.arnaud.exceptions.EntrepriseException;
+import be.ieps.poo.arnaud.logging.LoggingManager;
 import be.ieps.poo.arnaud.model.Personne;
 import be.ieps.poo.arnaud.model.Profession;
 
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class EntrepriseController implements Serializable {
 
@@ -37,7 +40,11 @@ public class EntrepriseController implements Serializable {
         return instance;
     }
 
+    /**
+     * Attribus
+     */
     private HashMap<Profession, ArrayList<Personne>> listeEmploye;
+    private static final Logger LOGGER = LoggingManager.LOGGER;
 
     private void initialisationEntreprise() {
         listeEmploye = new HashMap<>();
@@ -68,7 +75,11 @@ public class EntrepriseController implements Serializable {
 
     public void ajouterEmploye(Personne personne) throws EntrepriseException {
         if (peuxAjouterPersonne(personne)) {
-            listeEmploye.get(personne.getProfession()).add(personne);
+            if (listeEmploye.get(personne.getProfession()).add(personne)) {
+                LOGGER.log(Level.INFO, "Personne avec l'id: " + personne.getId() + " ajoutée.");
+            } else {
+                LOGGER.log(Level.WARNING, "Personne avec l'id: " + personne.getId() + " est daja dans la liste");
+            }
         } else {
             throw new EntrepriseException(String.format("Une erreur inatendue est survenue avec la profession: %s", personne.getProfession()));
         }
@@ -93,12 +104,24 @@ public class EntrepriseController implements Serializable {
         return false;
     }
 
-    public void supprimerPersonne(int id) {
+/*    public void supprimerPersonne(int id) {
         try {
             Personne pers = cherchePersonne(id);
-            listeEmploye.get(pers.getProfession()).remove(pers);
+            if (listeEmploye.get(pers.getProfession()).remove(pers)) {
+                LOGGER.log(Level.INFO, "Personne avec l'id: " + id + " ajoutée.");
+            } else {
+                LOGGER.log(Level.WARNING, "Personne avec l'id: " + id + " est daja dans la liste");
+            }
         } catch (EntrepriseException entExMsg) {
             System.out.println(entExMsg.getMessage());
+        }
+    }*/
+public void supprimerPersonne(int id) throws EntrepriseException {
+         Personne pers = cherchePersonne(id);
+        if (listeEmploye.get(pers.getProfession()).remove(pers)) {
+            LOGGER.log(Level.INFO, "Personne avec l'id: " + id + " ajoutée.");
+        } else {
+            LOGGER.log(Level.WARNING, "Personne avec l'id: " + id + " est daja dans la liste");
         }
     }
 

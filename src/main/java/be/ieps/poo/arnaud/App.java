@@ -23,26 +23,31 @@ public class App {
         pers = factory.getPersonne("Boss", "Jean", Profession.DIRECTEUR, 1500, 001);
         try {
             entrepriseController.ajouterEmploye(pers);
-        }catch (EntrepriseException e){
+        } catch (EntrepriseException e) {
             e.printStackTrace();
         }
         //ajout secretaire (2)
         pers = factory.getPersonne("Bureau", "Claudia", Profession.SECRETAIRE, 100);
         try {
             entrepriseController.ajouterEmploye(pers);
-        }catch (EntrepriseException e){
+        } catch (EntrepriseException e) {
             e.printStackTrace();
         }
         pers = factory.getPersonne("Burea", "Claudi", Profession.SECRETAIRE, 101);
         try {
             entrepriseController.ajouterEmploye(pers);
-        }catch (EntrepriseException e){
+        } catch (EntrepriseException e) {
             e.printStackTrace();
         }
-
+        try {
             entrepriseController.supprimerPersonne(200);
 
+        } catch (
+                EntrepriseException e) {
+            e.printStackTrace();
 
-        entrepriseController.afficherEntreprise();
+            entrepriseController.afficherEntreprise();
+        }
+
     }
 }
