@@ -1,14 +1,7 @@
-déc. 01, 2022 9:06:56 PM be.ieps.poo.arnaud.controller.EntrepriseController ajouterEmploye
-INFO: Personne avec l'id: 1 ajoutée.
-déc. 01, 2022 9:06:56 PM be.ieps.poo.arnaud.controller.EntrepriseController peuxAjouterPersonne
-WARNING: Personne avec l'id: 1 est déja dans la liste
-déc. 01, 2022 9:06:56 PM be.ieps.poo.arnaud.controller.EntrepriseController ajouterEmploye
-INFO: Personne avec l'id: 100 ajoutée.
-déc. 01, 2022 9:06:56 PM be.ieps.poo.arnaud.controller.EntrepriseController ajouterEmploye
-INFO: Personne avec l'id: 101 ajoutée.
-déc. 01, 2022 9:06:56 PM be.ieps.poo.arnaud.controller.EntrepriseController ajouterEmploye
-INFO: Personne avec l'id: 200 ajoutée.
-déc. 01, 2022 9:06:56 PM be.ieps.poo.arnaud.controller.EntrepriseController supprimerPersonne
-WARNING: Personne avec l'id: 200 supprimée.
-déc. 01, 2022 9:06:56 PM be.ieps.poo.arnaud.controller.EntrepriseController cherchePersonne
-SEVERE: Personne avec l'id: 300 n'est pas présent dans la liste
+"012145déc.22 | be.ieps.poo.arnaud.controller.EntrepriseController ajouterEmploye INFO : Personne avec l'id: 1 ajoutée."
+"012145déc.22 | be.ieps.poo.arnaud.controller.EntrepriseController peuxAjouterPersonne WARNING : Personne avec l'id: 1 est déja dans la liste"
+"012145déc.22 | be.ieps.poo.arnaud.controller.EntrepriseController ajouterEmploye INFO : Personne avec l'id: 100 ajoutée."
+"012145déc.22 | be.ieps.poo.arnaud.controller.EntrepriseController ajouterEmploye INFO : Personne avec l'id: 101 ajoutée."
+"012145déc.22 | be.ieps.poo.arnaud.controller.EntrepriseController ajouterEmploye INFO : Personne avec l'id: 200 ajoutée."
+"012145déc.22 | be.ieps.poo.arnaud.controller.EntrepriseController supprimerPersonne WARNING : Personne avec l'id: 200 supprimée."
+"012145déc.22 | be.ieps.poo.arnaud.controller.EntrepriseController cherchePersonne SEVERE : Personne avec l'id: 300 n'est pas présent dans la liste"
