@@ -77,8 +77,6 @@ public class EntrepriseController implements Serializable {
         if (peuxAjouterPersonne(personne)) {
             if (listeEmploye.get(personne.getProfession()).add(personne)) {
                 LOGGER.log(Level.INFO, "Personne avec l'id: " + personne.getId() + " ajoutée.");
-            } else {
-                LOGGER.log(Level.WARNING, "Personne avec l'id: " + personne.getId() + " est daja dans la liste");
             }
         } else {
             throw new EntrepriseException(String.format("Une erreur inatendue est survenue avec la profession: %s", personne.getProfession()));
@@ -87,6 +85,7 @@ public class EntrepriseController implements Serializable {
 
     public boolean peuxAjouterPersonne(Personne personne) throws EntrepriseException {
         if (employeDejaPresent(personne)) {
+            LOGGER.log(Level.WARNING, "Personne avec l'id: " + personne.getId() + " est déja dans la liste");
             throw new EntrepriseException(String.format("L'employé avec l'id %s existe deja", personne.getId()));
         }
         if (listeEmploye.get(personne.getProfession()).size() >= personne.getProfession().getMaxEmploye()) return false;
@@ -97,6 +96,7 @@ public class EntrepriseController implements Serializable {
         for (ArrayList<Personne> personnes : listeEmploye.values()) {
             for (Personne employe : personnes) {
                 if (employe.getId() == personne.getId()) {
+
                     return true;
                 }
             }
@@ -104,40 +104,34 @@ public class EntrepriseController implements Serializable {
         return false;
     }
 
-/*    public void supprimerPersonne(int id) {
-        try {
-            Personne pers = cherchePersonne(id);
-            if (listeEmploye.get(pers.getProfession()).remove(pers)) {
-                LOGGER.log(Level.INFO, "Personne avec l'id: " + id + " ajoutée.");
-            } else {
-                LOGGER.log(Level.WARNING, "Personne avec l'id: " + id + " est daja dans la liste");
-            }
-        } catch (EntrepriseException entExMsg) {
-            System.out.println(entExMsg.getMessage());
-        }
-    }*/
-public void supprimerPersonne(int id) throws EntrepriseException {
-         Personne pers = cherchePersonne(id);
-        if (listeEmploye.get(pers.getProfession()).remove(pers)) {
-            LOGGER.log(Level.INFO, "Personne avec l'id: " + id + " ajoutée.");
-        } else {
-            LOGGER.log(Level.WARNING, "Personne avec l'id: " + id + " est daja dans la liste");
-        }
+    public void supprimerPersonne(int id) throws EntrepriseException {
+
+        Personne pers = cherchePersonne(id);
+        if(listeEmploye.get(pers.getProfession()).remove(pers)){
+            LOGGER.log(Level.WARNING, "Personne avec l'id: " + id + " supprimée.");
+        };
     }
+
 
     public void supprimerListeEmploye() {
         listeEmploye.clear();
     }
 
     public Personne cherchePersonne(int id) throws EntrepriseException {
+Personne pers = null;
         for (ArrayList<Personne> arLisPersonnes : listeEmploye.values()) {
             for (Personne personne : arLisPersonnes) {
-                if (personne.getId() == id) {
-                    return personne;
+                if(personne.getId()== id) {
+                    pers = personne;
                 }
-
             }
         }
+        if (pers != null){
+            return pers;
+        }else{
+            LOGGER.log(Level.SEVERE, "Personne avec l'id: " + id + " n'est pas présent dans la liste");
+        }
+
         throw new EntrepriseException(String.format("La perseronne avec l'%s n'existe pas", id));
     }
 

@@ -11,7 +11,7 @@ public class App {
 
     private static EmployeFactory factory;
     private static EntrepriseController entrepriseController;
-    static Personne pers;
+    static Personne pers, pers1, pers2;
 
 
     public static void main(String[] args) throws EntrepriseException {
@@ -19,7 +19,7 @@ public class App {
         factory = new EmployeFactory();
         entrepriseController = EntrepriseController.getInstance();
 
-        //ajout directeur (1)
+/*        //ajout directeur (1)
         pers = factory.getPersonne("Boss", "Jean", Profession.DIRECTEUR, 1500, 001);
         try {
             entrepriseController.ajouterEmploye(pers);
@@ -44,10 +44,32 @@ public class App {
 
         } catch (
                 EntrepriseException e) {
+            e.printStackTrace();*/
+
+        //ajout directeur (1)
+
+        try {
+            entrepriseController.ajouterEmploye(factory.getPersonne("Boss", "Jean", Profession.DIRECTEUR, 1500, 001));
+            entrepriseController.ajouterEmploye(factory.getPersonne("Boss", "Jean", Profession.DIRECTEUR, 1500, 001));
+        } catch (EntrepriseException e) {
             e.printStackTrace();
-
-            entrepriseController.afficherEntreprise();
         }
+        entrepriseController.afficherEntreprise();
+        System.out.println("\ndeuxieme test\n");
 
+
+        try {
+            entrepriseController.ajouterEmploye(factory.getPersonne("Bureau", "Claudia", Profession.SECRETAIRE, 100));
+            entrepriseController.ajouterEmploye(factory.getPersonne("Burea", "Claudi", Profession.SECRETAIRE, 101));
+            entrepriseController.ajouterEmploye(factory.getPersonne("Chiffre", "Max", Profession.COMPTABLE, 200));
+            entrepriseController.afficherEntreprise();
+            entrepriseController.supprimerPersonne(200);
+            entrepriseController.supprimerPersonne(300);
+        } catch (EntrepriseException e) {
+            e.printStackTrace();
+        }
+        entrepriseController.afficherEntreprise();
     }
+
 }
+
